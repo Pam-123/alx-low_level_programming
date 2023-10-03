@@ -1,10 +1,11 @@
 #include <stdio.h>
 
 /**
- * main - Entry of the Program
- * @argc: is the argument counter
- * @argv: is the argument vector
- * Return: 0
+ * main - Entry point of the program
+ * @argc: Number of command-line arguments
+ * @argv: Array of command-line arguments
+ *
+ * Return: 0 (Success)
  */
 int main(int argc, char *argv[])
 {
@@ -16,15 +17,7 @@ int main(int argc, char *argv[])
 	{
 		count++;
 	}
-	if (count > 0)
-	{
-		printf("Arguments provided.\n");
-	}
-	else
-	{
-		printf("Arguments not provided.\n");
-	}
+	printf("%d\n", count); /* Print the number of arguments (excluding the program name) */
 
 	return (0);
 }
-
