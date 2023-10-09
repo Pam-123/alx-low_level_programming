@@ -7,6 +7,9 @@
  */
 int main(void)
 {
-	printf("%s\n", __FILE__);
+	const char *filename = __FILE__;
+
+	printf("%s\n", filename);
+
 	return (0);
 }
