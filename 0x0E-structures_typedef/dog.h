@@ -1,19 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef DOG_H
+#define DOG_H
 
 /**
- * main - Entry
- * struct dog - Structure representing a dog
- * @name: Pointer to the name of the dog
- * @age: Age of the dog
- * @owner: Pointer to the owner's name
- *
- * Description: This structure represents information about a dog,
- * including its name, age, and owner's name.
+ * struct dog - Structure of Dog
+ * @name: name of the dog
+ * @age: age of the dog
+ * @owner: owner of the dog
  */
 struct dog
 {
 	char *name;
 	float age;
-	char *owner;
-}
+
+	char *owner
+};
+
+#endif
