@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 /**
+ * main - Entry
  * struct dog - Structure representing a dog
  * @name: Pointer to the name of the dog
  * @age: Age of the dog
@@ -16,5 +17,3 @@ struct dog
 	float age;
 	char *owner;
 }
-
-typedef struct dog dog_t;
