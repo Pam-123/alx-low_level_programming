@@ -1,6 +1,46 @@
 #include <stdarg.h>
-#include "variadic_functions.h"
 #include <stdio.h>
+
+/**
+ * print_char - Prints a character
+ * @args: Argument list
+ */
+void print_char(va_list args)
+{
+	printf("%c", va_arg(args, int));
+}
+
+/**
+ * print_int - Prints an integer
+ * @args: Argument list
+ */
+void print_int(va_list args)
+{
+	printf("%d", va_arg(args, int));
+}
+
+/**
+ * print_float - Prints a float
+ * @args: Argument list
+ */
+void print_float(va_list args)
+{
+	printf("%f", va_arg(args, double));
+}
+
+/**
+ * print_string - Prints a string (or (nil) if string is NULL)
+ * @args: Argument list
+ */
+void print_string(va_list args)
+{
+	char *str = va_arg(args, char *);
+
+	if (str == NULL)
+		printf("(nil)");
+	else
+		printf("%s", str);
+}
 
 /**
  * print_all - Prints anything based on the format string
@@ -10,45 +50,32 @@
 void print_all(const char * const format, ...)
 {
 	va_list args;
-	int i = 0;
-	char *str;
-	char c;
-	int num;
-	float f;
+	unsigned int i = 0, j = 0;
+	char *separators[] = {"", ", "};
+
+	print_func formats[] = {
+		{'c', print_char},
+		{'i', print_int},
+		{'f', print_float},
+		{'s', print_string},
+		{0, NULL}
+	};
 
 	va_start(args, format);
 
 	while (format && format[i])
 	{
-		switch (format[i])
+		j = 0;
+		while (formats[j].type)
 		{
-			case 'c':
-				c = va_arg(args, int);
-				printf("%c", c);
+			if (formats[j].type == format[i])
+			{
+				formats[j].func(args);
+				printf("%s", separators[format[i + 1] != '\0']);
 				break;
-			case 'i':
-				num = va_arg(args, int);
-				printf("%d", num);
-				break;
-			case 'f':
-				f = va_arg(args, double);
-				printf("%f", f);
-				break;
-			case 's':
-				str = va_arg(args, char *);
-				if (str == NULL)
-					printf("(nil)");
-				else
-					printf("%s", str);
-				break;
-			default:
-				i++;
-				continue;
+			}
+			j++;
 		}
-
-		if (format[i + 1] != '\0')
-			printf(", ");
-
 		i++;
 	}
 
@@ -56,4 +83,3 @@ void print_all(const char * const format, ...)
 
 	printf("\n");
 }
-
