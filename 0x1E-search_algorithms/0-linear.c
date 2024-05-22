@@ -1,30 +1,32 @@
-# Define the linear_search function
-def linear_search(arr, target):
-    """
-    Perform linear search to find the target value in the array.
+#include <stdio.h>
 
-    Parameters:
-        arr (list): List of integers to be searched.
-        target (int): Value to search for in the array.
+int linear_search(int *array, size_t size, int value) {
+    if (array == NULL) {
+        return -1;
+    }
 
-    Returns:
-        int: Index of the target value if found, otherwise -1.
-    """
-    for i in range(len(arr)):
-        if arr[i] == target:
-            return i
-    return -1
+    for (size_t i = 0; i < size; i++) {
+        printf("Comparing value %d with %d\n", array[i], value);
+        if (array[i] == value) {
+            return i; // Return the index where the value is found
+        }
+    }
+    
+    return -1; // Value not found
+}
 
-# Example usage:
-array = [4, 7, 2, 9, 1, 5]
-value_to_find = 9
+int main() {
+    int arr[] = {4, 7, 2, 9, 1, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int value_to_find = 9;
 
-# Call the function and store the result
-index = linear_search(array, value_to_find)
+    int index = linear_search(arr, size, value_to_find);
 
-# Check if the value was found
-if index != -1:
-    print(f"The value {value_to_find} was found at index {index}.")
-else:
-    print(f"The value {value_to_find} was not found in the array.")
+    if (index != -1) {
+        printf("The value %d was found at index %d.\n", value_to_find, index);
+    } else {
+        printf("The value %d was not found in the array.\n", value_to_find);
+    }
 
+    return 0;
+}
